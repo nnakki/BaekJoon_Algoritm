@@ -21,7 +21,7 @@ public class no2309 {
         int fake_sum = 0;
 
         while (targetNum != fake_sum) {
-            Collections.shuffle(Arrays.asList(dwarf));
+            Collections.shuffle(dwarf);
             fake_sum = dwarf.get(0) + dwarf.get(1);
         }
 
@@ -32,7 +32,7 @@ public class no2309 {
         Collections.sort(new_dwarf);
 
         for (int i : new_dwarf) {
-            System.out.println(new_dwarf.get(i));
+            System.out.println(i);
         }
     }
 }

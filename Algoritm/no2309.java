@@ -2,6 +2,7 @@ package Algoritm;
 
 import java.util.*;
 
+//일곱난쟁이
 public class no2309 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

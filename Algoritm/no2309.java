@@ -8,7 +8,6 @@ public class no2309 {
         Scanner sc = new Scanner(System.in);
 
         List<Integer> dwarf = new ArrayList<>();
-        List<Integer> new_dwarf = new ArrayList<>();
         int dwarf_sum = 0;
 
         for (int i = 0; i < 9; i++) {
@@ -18,20 +17,24 @@ public class no2309 {
         dwarf_sum = dwarf.stream().mapToInt(Integer::intValue).sum();
 
         int targetNum = dwarf_sum - 100;
-        int fake_sum = 0;
+        int fake_dwarf_A = 0;
+        int fake_dwarf_B = 0;
 
-        while (targetNum != fake_sum) {
-            Collections.shuffle(dwarf);
-            fake_sum = dwarf.get(0) + dwarf.get(1);
+        for (int i = 0; i < dwarf.size(); i++) {
+            for (int j = i + 1; j < dwarf.size(); j++) {
+                if (dwarf.get(i) + dwarf.get(j) == targetNum) {
+                    fake_dwarf_A = dwarf.get(i);
+                    fake_dwarf_B = dwarf.get(j);
+                    break;
+                }
+            }
         }
 
-        for (int i = 0; i < 7; i++) {
-            new_dwarf.add(dwarf.get(i + 2));
-        }
+        Collections.sort(dwarf);
 
-        Collections.sort(new_dwarf);
-
-        for (int i : new_dwarf) {
+        for (int i : dwarf) {
+            if (i == fake_dwarf_A || i == fake_dwarf_B)
+                continue;
             System.out.println(i);
         }
     }

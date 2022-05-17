@@ -1,7 +1,8 @@
 package Algoritm;
 
-import java.util.Scanner;
+import java.io.*;
 import java.util.Stack;
+import java.util.StringTokenizer;
 
 //스택
 //push X: 정수 X를 스택에 넣는 연산이다.
@@ -9,27 +10,49 @@ import java.util.Stack;
 //size: 스택에 들어있는 정수의 개수를 출력한다.
 //empty: 스택이 비어있으면 1, 아니면 0을 출력한다.
 //top: 스택의 가장 위에 있는 정수를 출력한다. 만약 스택에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+
 public class no10828 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         Stack<Integer> stack = new Stack<>();
-        Scanner sc = new Scanner(System.in);
 
-        int N = sc.nextInt();
+        int N = Integer.parseInt(br.readLine());
 
-        for(int i=0; i<N; i++){
-            String str = sc.next();
-            if(str.contains("push")){
-                int inputNumber = sc.nextInt();
-                stack.push(inputNumber);
-            }else if(str.equals("pop")){
-                System.out.println(stack.isEmpty()?-1:stack.pop());
-            }else if(str.equals("size")){
-                System.out.println(stack.size());
-            }else if(str.equals("empty")){
-                System.out.println(stack.isEmpty()?1:0);
-            }else if(str.equals("top")){
-                System.out.println(stack.isEmpty()?-1:stack.peek());
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            String str = st.nextToken();
+
+            switch (str) {
+                case "push":
+                    String str2 = st.nextToken();
+                    stack.push(Integer.parseInt(str2));
+                    break;
+
+                case "pop":
+                    if (stack.isEmpty()) {
+                        bw.write("-1\n");
+                    } else {
+                        bw.write(stack.pop() + "\n");
+                    }
+                    break;
+
+                case "size":
+                    bw.write(stack.size() + "\n");
+                    break;
+
+                case "empty":
+                    bw.write(stack.isEmpty() ? "1\n" : "0\n");
+                    break;
+
+                case "top":
+                    if (stack.isEmpty()) {
+                        bw.write("-1\n");
+                    } else {
+                        bw.write(stack.peek() + "\n");
+                    }
             }
         }
+        bw.flush();
     }
 }

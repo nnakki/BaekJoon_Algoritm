@@ -8,7 +8,7 @@ public class no2309 {
         Scanner sc = new Scanner(System.in);
 
         List<Integer> dwarf = new ArrayList<>();
-        int dwarf_sum = 0;
+        int dwarf_sum;
 
         for (int i = 0; i < 9; i++) {
             dwarf.add(sc.nextInt());

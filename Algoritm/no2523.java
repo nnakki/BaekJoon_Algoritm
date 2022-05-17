@@ -2,6 +2,7 @@ package Algoritm;
 
 import java.util.Scanner;
 
+//별찍기
 public class no2523 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);

@@ -2,6 +2,7 @@ package Algoritm;
 
 import java.util.Scanner;
 
+//더하기 사이클
 public class no1110 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

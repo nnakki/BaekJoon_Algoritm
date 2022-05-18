@@ -14,7 +14,7 @@ public class no1018 {
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
         int minChange;
-        int result = 32;
+        int result = 33;
 
         char[][] chess = new char[N][M];
 
@@ -28,7 +28,7 @@ public class no1018 {
         for (int n = 0; n < N - 7; n++) {
             for (int m = 0; m < M - 7; m++) {
                 minChange = findMinChange(n, m, chess);
-                if(result >= minChange){
+                if (result >= minChange) {
                     result = minChange;
                 }
             }
@@ -38,23 +38,30 @@ public class no1018 {
 
     public static int findMinChange(int n, int m, char[][] chess) {
 
-        int changeCount;
-        int whiteCount = 0;
-        int result = 33;
+        int changeCount = 0;
         int max_row = n + 8;
         int max_col = m + 8;
 
         for (int i = n; i < max_row; i++) {
             for (int j = m; j < max_col; j++) {
-                if (chess[i][j] == 'W') {
-                    whiteCount++;
-                }
-                changeCount = Math.abs(32 - whiteCount);
-                if (result >= changeCount) {
-                    result = changeCount;
+
+                int remain = (n + m) % 2;
+
+                if (chess[n][m] == 'W') {
+                    if ((i + j) % 2 == remain && chess[i][j] != 'W') {
+                        changeCount++;
+                    } else if ((i + j) % 2 != remain && chess[i][j] != 'B') {
+                        changeCount++;
+                    }
+                } else {
+                    if ((i + j) % 2 == remain && chess[i][j] != 'B') {
+                        changeCount++;
+                    } else if ((i + j) % 2 != remain && chess[i][j] != 'W') {
+                        changeCount++;
+                    }
                 }
             }
         }
-        return result;
+        return changeCount;
     }
 }

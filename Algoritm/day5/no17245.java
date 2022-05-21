@@ -13,15 +13,15 @@ public class no17245 {
         int N = Integer.parseInt(br.readLine());
         int[][] serverRoom = new int[N][N];
         int all_count = 0;
-        int max_computer = 0;
+        int max = 0;
 
         for (int i = 0; i < N; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             for (int j = 0; j < N; j++) {
                 serverRoom[i][j] = Integer.parseInt(st.nextToken());
                 all_count += serverRoom[i][j];
-                if (max_computer < serverRoom[i][j]) {
-                    max_computer = serverRoom[i][j];
+                if (max < serverRoom[i][j]) {
+                    max = serverRoom[i][j];
                 }
             }
         }
@@ -29,29 +29,26 @@ public class no17245 {
         //켜져야하는 컴퓨터의 대수
         int targetNum = (int) Math.ceil((double) all_count / 2);
 
-        max_computer++;
-        int min_computer = 0;
-        int middle_computer;
+        max++;
+        int min = 0;
+        int mid;
         int level = 0;
 
-        while (min_computer < max_computer) {
-            middle_computer = (min_computer + max_computer) / 2;
-            System.out.println(middle_computer);
+        while (min < max) {
+            mid = (min + max) / 2;
             int cnt = 0;
 
             for (int i = 0; i < N; i++) {
                 for (int j = 0; j < N; j++) {
-                    if (serverRoom[i][j] >= middle_computer) {
+                    if (serverRoom[i][j] <= mid) {
                         cnt++;
                     }
                 }
             }
-            System.out.println(cnt);
-            if (cnt < targetNum) {
-                max_computer = middle_computer;
+            if (cnt >= targetNum) {
+                level = mid;
             } else {
-                level = middle_computer;
-                min_computer = middle_computer + 1;
+                min = mid + 1;
             }
         }
         System.out.println(level);

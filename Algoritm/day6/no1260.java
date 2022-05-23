@@ -25,7 +25,7 @@ public class no1260 {
         }
 
         //인접리스트 생성
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
             int s = Integer.parseInt(st.nextToken());
             int e = Integer.parseInt(st.nextToken());
